@@ -1,4 +1,4 @@
-const { validateEmail } = require("../Validations/serviceValidation");
+const { validateEmail } = require("../Validations/validateEmail");
 
 function getUserByEmail({ email }) {
   validateEmail(email);

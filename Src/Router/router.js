@@ -1,10 +1,8 @@
 const express = require("express");
-const { routesLogin } = require("./routesLogin");
-
-console.log('--> ', typeof routesLogin);
+const { loginRoutes } = require("./routesLogin");
 
 const router = express.Router();
 
-// router.use("/login", routesLogin);
+router.use("/login", loginRoutes);
 
 module.exports = router;
