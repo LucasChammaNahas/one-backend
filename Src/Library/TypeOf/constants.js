@@ -1,3 +1,18 @@
+const validRawTypes = [
+  "Number",
+  "BigInt",
+  "String",
+  "Boolean",
+  "Null",
+  "Undefined",
+  "Array",
+  "Object",
+  "Date",
+  "Set",
+  "Map",
+  "Function",
+];
+
 const strictToLooseMap = {
   Number: "Number",
   BigInt: "Number",
@@ -15,4 +30,4 @@ const strictToLooseMap = {
   Function: "Function",
 };
 
-module.exports = { strictToLooseMap };
+module.exports = { validRawTypes, strictToLooseMap };

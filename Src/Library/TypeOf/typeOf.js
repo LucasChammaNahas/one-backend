@@ -1,11 +1,12 @@
 const { strictToLooseMap } = require("./constants");
-const { validateProps, inferType } = require("./functions");
+const { validateProps, inferType, validateType } = require("./functions");
 
 function typeOf(x, options = {}) {
   validateProps(options);
   const { mode = "loose" } = options;
 
   let strictType = inferType(x);
+  validateType(strictType);
 
   if (strictType === "Number") {
     if (Number.isNaN(x)) strictType = "NaN";
@@ -14,11 +15,8 @@ function typeOf(x, options = {}) {
   }
 
   if (mode === "loose") {
-    const looseType = strictToLooseMap[strictType];
-    if (looseType === undefined) return strictType;
-    return looseType;
+    return strictToLooseMap[strictType];
   }
-
   return strictType;
 }
 

@@ -1,4 +1,5 @@
 const { UtilityError } = require("../CustomErrors");
+const { validRawTypes } = require("./constants");
 
 function validateProps(options) {
   const type = inferType(options);
@@ -21,4 +22,13 @@ function inferType(x) {
   return type;
 }
 
-module.exports = { validateProps, inferType };
+function validateType(type) {
+  if (!validRawTypes.includes(type)) {
+    throw new UtilityError(
+      `typeOf says: The type "${type}" cannot be used by this utility library.
+      If this is not a bug in your program, this lib may not be suitable for your application :(`
+    );
+  }
+}
+
+module.exports = { validateProps, inferType, validateType };
