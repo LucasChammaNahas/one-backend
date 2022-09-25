@@ -1,4 +1,4 @@
-const { ValidationError } = require("../Errors/CustomErrors");
+const { ExternalValError } = require("../Errors/ExternalValError");
 
 function validateEmail(email) {
   const isMailValid =
@@ -7,7 +7,7 @@ function validateEmail(email) {
     email.length < 256 &&
     email.includes("@");
   if (isMailValid) return;
-  throw new ValidationError(`Email "${email}" is not valid`);
+  throw new ExternalValError(`Email "${email}" is not valid`);
 }
 
 module.exports = { validateEmail };

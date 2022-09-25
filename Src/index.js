@@ -1,7 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-const Pool = require('pg').Pool;
-const { pool } = require('./Database/dbConfig');
+const {getUserByEmail} = require('./Model/GetUserByEmail/getUserByEmail')
 
 const router = require('./Router/router');
 const app = express();
@@ -21,6 +20,4 @@ app.listen(5000, () => {
   console.log('--> nois tio');
 });
 
-// pool.query(`SELECT * FROM users`, undefined, (err, res) => {
-//   console.log('--> res', res.rows);
-// });
+getUserByEmail({email: 'pato@gato.coms'});

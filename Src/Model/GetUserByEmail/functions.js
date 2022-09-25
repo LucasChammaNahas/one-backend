@@ -1,14 +1,24 @@
+const { typeOf } = require('lucas');
 const { InternalPropsValError } = require('../../Errors/InternalPropsValError');
-const { InternalError } = require('../../Errors/InternalError');
+const { InternalPropValError } = require('../../Errors/InternalPropValError');
 
-function validateProps(x, args) {
+function validateProps(props, args) {
   const numOfArgs = Object.keys(args).length;
   if (numOfArgs !== 1) {
-    throw new InternalPropsValError('isVectorOfWhat', 'x: any, options: {}', 1);
+    throw new InternalPropsValError('Model getUserByEmail', 'email: string');
   }
 
-  if (isVector(x) === false) {
-    throw new InternalError('isVectorOfWhat says: argument must be a vector')
+  if (typeOf(props) !== 'Object' || Object.keys(props).length === 0) {
+    throw new InternalPropValError(
+      'Model getUserByEmail says: function argument must be a non-empty object --> getUserByEmail({ email: string })'
+    );
+  }
+
+  const { email } = props;
+  if (typeOf(email) !== 'String' || email.length === 0) {
+    throw new InternalPropValError(
+      'Model getUserByEmail says: "email" must be a non-empty string --> getUserByEmail({ email: string }'
+    );
   }
 }
 

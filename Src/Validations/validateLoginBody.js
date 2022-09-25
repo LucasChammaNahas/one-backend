@@ -1,11 +1,11 @@
-const { ValidationError } = require("../Errors/CustomErrors");
+const { ExternalValError } = require("../Errors/ExternalValError");
 
 function validateLoginBody(body) {
   const { email } = body;
   const { password } = body;
   const isBodyValid = email !== undefined && password !== undefined;
   if (isBodyValid) return;
-  throw new ValidationError("Login body is not valid");
+  throw new ExternalValError("Login body is not valid");
 }
 
 module.exports = { validateLoginBody };

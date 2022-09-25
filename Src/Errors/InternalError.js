@@ -6,4 +6,4 @@ class InternalError extends Error {
   }
 }
 
-module.exports = { InternalError, ValidationError };
+module.exports = { InternalError };

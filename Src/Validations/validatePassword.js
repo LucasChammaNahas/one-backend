@@ -1,4 +1,4 @@
-const { ValidationError } = require("../Errors/CustomErrors");
+const { ExternalValError } = require("../Errors/ExternalValError");
 
 function validatePassword(password) {
   const isPasswordValid =
@@ -6,7 +6,7 @@ function validatePassword(password) {
     password.length > 0 &&
     password.length < 256;
   if (isPasswordValid) return;
-  throw new ValidationError(`Password "${password}" is not valid`);
+  throw new ExternalValError(`Password "${password}" is not valid`);
 }
 
 module.exports = { validatePassword };
