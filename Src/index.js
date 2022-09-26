@@ -1,5 +1,5 @@
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const {getUserByEmail} = require('./Model/GetUserByEmail/getUserByEmail')
 
 const router = require('./Router/router');
@@ -17,7 +17,7 @@ app.use(router);
 // });
 
 app.listen(5000, () => {
-  console.log('--> nois tio');
+  // console.log('--> nois tio');
 });
 
-getUserByEmail({email: 'pato@gato.coms'});
+getUserByEmail({email: 'pato@gato.com'});

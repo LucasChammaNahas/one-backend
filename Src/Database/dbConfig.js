@@ -12,7 +12,7 @@ const database = process.env.DB_DATABASE;
 const localConnStr = `postgresql://${user}:${password}@${host}:${port}/${database}`;
 const prodConnStr = process.env.DATABASE_URL;
 
-connectionString = isProduction ? prodConnStr : localConnStr;
+const connectionString = isProduction ? prodConnStr : localConnStr;
 
 const pool = new Pool({
   connectionString,
