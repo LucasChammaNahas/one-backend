@@ -1,7 +1,7 @@
-const { getUserByEmail } = require("../Service/serviceFunctions");
+const { getUser } = require('../Service/GetUser/getUser');
 
 async function login({ body }, res) {
-  res.status(200).json({ pato: "login" });
+  res.status(200).json({ pato: 'login' });
 }
 
 module.exports = {

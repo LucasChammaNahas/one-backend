@@ -1,6 +1,7 @@
+require('pretty-error').start();
 const express = require('express');
 // const cors = require('cors');
-const {getUserByEmail} = require('./Model/GetUserByEmail/getUserByEmail')
+const {getUser} = require('./Model/GetUser/getUser')
 
 const router = require('./Router/router');
 const app = express();
@@ -20,4 +21,4 @@ app.listen(5000, () => {
   // console.log('--> nois tio');
 });
 
-getUserByEmail({email: 'pato@gato.com'});
+getUser({email: 'pato@gato.com'});
