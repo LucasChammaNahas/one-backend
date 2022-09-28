@@ -19,8 +19,8 @@ app.use(router);
 // });
 
 app.listen(5000, () => {
-  // console.log('--> nois tio');
+  console.log('--> nois tio');
 });
 
-login({email: 'pato@gato.com'})
+// login({email: 'pato@gato.com'})
 // getUser({email: 'pato@gato.com'});

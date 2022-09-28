@@ -1,9 +1,9 @@
-const express = require("express");
-const verifyLoginRequest = require("../Middleware/verifyLoginRequest");
-const ctrl = require("../Controller/controllerLogin");
+const express = require('express');
+const verifyLoginRequest = require('../Middleware/verifyLoginRequest');
+const {login} = require('../Controller/controllerLogin');
 
 const loginRoutes = express.Router();
 
-loginRoutes.get("/", verifyLoginRequest, ctrl.login);
+loginRoutes.get('/', verifyLoginRequest, login);
 
 module.exports = { loginRoutes };

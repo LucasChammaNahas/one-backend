@@ -2,7 +2,7 @@ const { pool } = require('../../Database/dbConfig');
 const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 
-async function getUser(props) {
+async function getUser(props) /*null, obj*/ {
   validateProps(props, arguments);
   const { email } = props;
 
@@ -10,7 +10,6 @@ async function getUser(props) {
     const query = 'SELECT * FROM users WHERE email = $1';
     const params = [email];
     const { rows } = await pool.query(query, params);
-    console.log('--> ' ,rows)
     if (rows.length === 0) return null;
     return rows[0];
   } catch (error) {
