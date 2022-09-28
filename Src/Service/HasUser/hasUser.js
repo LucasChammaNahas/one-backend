@@ -1,16 +1,14 @@
-const { typeOf } = require('lucas');
+// const { typeOf } = require('lucas');
 const { validateProps } = require('./functions');
-const { getUser: getUserViaImport } = require('../../Model/GetUser/getUser');
+const { getUser } = require('../../Model/GetUser/getUser');
 
 async function hasUser(props) {
   validateProps(props, arguments);
-  const { email, getUserViaProps } = props;
+  const { email, user: propsUser } = props;
 
-  let getUser = getUserViaImport;
-  if (typeOf(getUserViaProps) === 'Function') {
-    getUser = getUserViaProps;
-  }
-  const user = await getUser({ email });
+  const hasPropsUser = propsUser !== undefined;
+  const user = hasPropsUser ? propsUser : await getUser({ email });
+
   if (user === null) return false;
   return true;
 }
