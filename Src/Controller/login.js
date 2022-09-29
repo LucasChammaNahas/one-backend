@@ -5,20 +5,22 @@ const {
   successfulLogin,
 } = require('../StatusCodes/statusCodes');
 
-async function login({ body }, res) {
-  const { email, password } = body;
+const jwt = require('jsonwebtoken');
+const SECRET = 'segredoSecreto';
 
-  const user = getUser({ email });
+async function login({ body }, res) {
+  const user = getUser({ email: body.email });
   if (user === null) {
     res.status(userNotFound.code).json(userNotFound.msg);
   }
 
-  const storedPwd = user.password;
-  if (password !== storedPwd) {
+  if (body.password !== user.password) {
     res.status(incorrectPwd.code).json(incorrectPwd.msg);
   }
-  
-  res.status(successfulLogin.code).json(successfulLogin.msg);
+
+  const token = jwt.sign(body.email, SECRET);
+  const resPkg = { token, msg: successfulLogin.msg };
+  res.status(successfulLogin.code).json(resPkg);
 }
 
 module.exports = { login };

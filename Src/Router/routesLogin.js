@@ -1,6 +1,6 @@
 const express = require('express');
 const verifyLoginRequest = require('../Middleware/verifyLoginRequest');
-const {login} = require('../Controller/controllerLogin');
+const { login } = require('../Controller/controllerLogin');
 
 const loginRoutes = express.Router();
 
