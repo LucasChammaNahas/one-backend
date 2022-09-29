@@ -8,7 +8,7 @@ const {
 const jwt = require('jsonwebtoken');
 const SECRET = 'segredoSecreto';
 
-async function login({ body }, res) {
+async function login({ body }, res) /* Void */ {
   const user = getUser({ email: body.email });
   if (user === null) {
     res.status(userNotFound.code).json(userNotFound.msg);

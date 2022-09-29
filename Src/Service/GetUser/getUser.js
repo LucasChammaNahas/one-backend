@@ -1,9 +1,7 @@
 const { validateProps } = require('./functions');
-const {
-  getUser: getUserModel,
-} = require('../../Model/GetUser/getUser');
+const { getUser: getUserModel } = require('../../Model/GetUser/getUser');
 
-async function getUser(props) /*null, obj*/ {
+async function getUser(props) /* null, obj */ {
   validateProps(props, arguments);
   const { email } = props;
   const user = await getUserModel({ email });
