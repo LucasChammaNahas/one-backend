@@ -9,9 +9,8 @@ function verifyLoginRequest({ body }, res, next) {
     validatePassword(password);
     next();
   } catch (err) {
-    console.log(err);
     res.status(badRequest.code).json(badRequest.msg);
   }
 }
 
-module.exports = verifyLoginRequest;
+module.exports = { verifyLoginRequest };

@@ -1,8 +1,8 @@
-const { ExternalValError } = require("../Errors/ExternalValError");
+const { ExternalValError } = require('../Errors/ExternalValError');
 
 function validatePassword(password) {
   const isPasswordValid =
-    typeof password === "string" &&
+    typeof password === 'string' &&
     password.length > 0 &&
     password.length < 256;
   if (isPasswordValid) return;
