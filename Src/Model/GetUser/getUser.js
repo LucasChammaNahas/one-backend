@@ -2,14 +2,15 @@ const { pool } = require('../../Database/dbConfig');
 const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 
+const GET_USER_QUERY = 'SELECT * FROM users WHERE email = $1';
+
 async function getUser(props) /*null, obj*/ {
   validateProps(props, arguments);
   const { email } = props;
 
   try {
-    const query = 'SELECT * FROM users WHERE email = $1';
     const params = [email];
-    const { rows } = await pool.query(query, params);
+    const { rows } = await pool.query(GET_USER_QUERY, params);
     if (rows.length === 0) return null;
     return rows[0];
   } catch (error) {
@@ -20,4 +21,4 @@ async function getUser(props) /*null, obj*/ {
   }
 }
 
-module.exports = { getUser };
+module.exports = { getUser, GET_USER_QUERY };

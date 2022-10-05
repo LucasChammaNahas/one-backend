@@ -2,7 +2,7 @@ const { pool } = require('../../Database/dbConfig');
 const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 
-const setUserQuery = 'INSERT INTO users (email, password) VALUES ($1, $2)';
+const SET_USER_QUERY = 'INSERT INTO users (email, password) VALUES ($1, $2)';
 
 async function setUser(props) /*Void*/ {
   validateProps(props, arguments);
@@ -10,7 +10,7 @@ async function setUser(props) /*Void*/ {
 
   try {
     const params = [email, password];
-    const { rows } = await pool.query(setUserQuery, params);
+    const { rows } = await pool.query(SET_USER_QUERY, params);
     if (rows.length === 0) return null;
     return rows[0];
   } catch (error) {
@@ -21,4 +21,4 @@ async function setUser(props) /*Void*/ {
   }
 }
 
-module.exports = { setUser, setUserQuery };
+module.exports = { setUser, SET_USER_QUERY };
