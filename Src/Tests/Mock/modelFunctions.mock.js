@@ -1,7 +1,6 @@
-const { generateDb } = require('./db.mock');
+const { db } = require('./db.mock');
 
 function getUser(email) {
-  const db = generateDb();
   const res = db.find((user) => user.email === email);
   return !res ? null : res;
 }

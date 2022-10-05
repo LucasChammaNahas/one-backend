@@ -13,7 +13,7 @@ jest.mock('../../../Service/GetUser/getUser', () => ({
 }));
 
 describe('SERVICE hasUser', () => {
-  it.only('Passing parameters correctly', async () => {
+  it('Passing parameters correctly', async () => {
     const res = await hasUser({ email: MOCKED_USER.email });
     console.log('--> ', res);
     expect(res).toBe(true);

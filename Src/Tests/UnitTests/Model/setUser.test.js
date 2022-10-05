@@ -1,12 +1,13 @@
 const { describe, expect, it } = require('@jest/globals');
 const { mockedPool } = require('../../Mock/dbConfig.mock');
-const { db } = require('../../Mock/db.mock');
+const { resetDb } = require('../../Mock/db.mock');
 const { getUser } = require('../../../Model/GetUser/getUser');
 
 jest.mock('../../../Database/dbConfig', () => ({ pool: mockedPool }));
 
 describe('MODEL getUser', () => {
   it('Existing users', async () => {
+    const db = generateDb();
     const res0 = await getUser({ email: db[0].email });
     const res1 = await getUser({ email: db[1].email });
     const res2 = await getUser({ email: db[2].email });

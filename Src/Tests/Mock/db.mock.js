@@ -1,6 +1,6 @@
 const _ = require('lodash');
 
-const db = [
+const initialDb = [
   {
     email: 'pato@gato.com',
     password: 'senha',
@@ -19,8 +19,14 @@ const db = [
   },
 ];
 
-function generateDb() {
-  return _.cloneDeep(db);
+const db = _.cloneDeep(initialDb);
+
+function resetDb() {
+  const len = db.length;
+  for (let i = 0; i < len; i += 1) {
+    db.pop();
+  }
+  initialDb.forEach((user) => db.push(_.cloneDeep(user)));
 }
 
-module.exports = { generateDb };
+module.exports = { db, resetDb };
