@@ -8,7 +8,7 @@ function validateProps(props, args) {
     throw new InternalPropsValError('getUser', 'email: string');
   }
 
-  if (typeOf(props) !== 'Object' || Object.keys(props).length === 0) {
+  if (typeOf(props) !== 'Object' || Object.keys(props).length !== 1) {
     throw new InternalPropValError(
       'getUser says: function argument must be a non-empty object --> getUser({ email: string })'
     );

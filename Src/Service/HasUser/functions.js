@@ -5,19 +5,19 @@ const { InternalPropValError } = require('../../Errors/InternalPropValError');
 function validateProps(props, args) {
   const numOfArgs = Object.keys(args).length;
   if (numOfArgs !== 1) {
-    throw new InternalPropsValError('getUser', 'email: string');
+    throw new InternalPropsValError('hasUser', 'email: string');
   }
 
-  if (typeOf(props) !== 'Object' || Object.keys(props).length === 0) {
+  if (typeOf(props) !== 'Object' || Object.keys(props).length !== 1) {
     throw new InternalPropValError(
-      'getUser says: function argument must be a non-empty object --> getUser({ email: string })'
+      'hasUser says: function argument must be a non-empty object --> hasUser({ email: string })'
     );
   }
 
   const { email } = props;
   if (typeOf(email) !== 'String' || email.length === 0) {
     throw new InternalPropValError(
-      'getUser says: "email" must be a non-empty string --> getUser({ email: string }'
+      'hasUser says: "email" must be a non-empty string --> hasUser({ email: string }'
     );
   }
 }

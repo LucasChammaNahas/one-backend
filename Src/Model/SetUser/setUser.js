@@ -2,14 +2,15 @@ const { pool } = require('../../Database/dbConfig');
 const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 
+const setUserQuery = 'INSERT INTO users (email, password) VALUES ($1, $2)';
+
 async function setUser(props) /*Void*/ {
   validateProps(props, arguments);
   const { email, password } = props;
 
   try {
-    const query = 'SELECT * FROM users WHERE email = $1';
-    const params = [email];
-    const { rows } = await pool.query(query, params);
+    const params = [email, password];
+    const { rows } = await pool.query(setUserQuery, params);
     if (rows.length === 0) return null;
     return rows[0];
   } catch (error) {
@@ -20,4 +21,4 @@ async function setUser(props) /*Void*/ {
   }
 }
 
-module.exports = { setUser };
+module.exports = { setUser, setUserQuery };
