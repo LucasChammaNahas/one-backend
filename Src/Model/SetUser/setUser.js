@@ -1,8 +1,7 @@
 const { pool } = require('../../Database/dbConfig');
 const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
-
-const SET_USER_QUERY = 'INSERT INTO users (email, password) VALUES ($1, $2)';
+const { SET_USER_QUERY } = require('../../Database/queries');
 
 async function setUser(props) /*Void*/ {
   validateProps(props, arguments);
@@ -21,4 +20,4 @@ async function setUser(props) /*Void*/ {
   }
 }
 
-module.exports = { setUser, SET_USER_QUERY };
+module.exports = { setUser };

@@ -1,13 +1,11 @@
 const { describe, expect, it } = require('@jest/globals');
-const { mockedPool } = require('../../Mock/dbConfig.mock');
-const { resetDb } = require('../../Mock/db.mock');
+const { db } = require('../../../Database/__mocks__/db');
 const { setUser } = require('../../../Model/SetUser/setUser');
 
-jest.mock('../../../Database/dbConfig', () => ({ pool: mockedPool }));
+jest.mock('../../../Database/dbConfig');
 
 describe('MODEL setUser', () => {
   it('New users', async () => {
-    const db = generateDb();
     const res0 = await setUser({ email: db[0].email });
     const res1 = await setUser({ email: db[1].email });
     const res2 = await setUser({ email: db[2].email });

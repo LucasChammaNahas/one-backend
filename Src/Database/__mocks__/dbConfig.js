@@ -5,6 +5,5 @@ const pool = {
     return { rows: [dbResponsesSwitch(query, params)] };
   },
 };
-// const pool = 'pato pool'
 
 module.exports = { pool };
