@@ -2,7 +2,6 @@ const { db } = require('./db');
 const { GET_USER_QUERY, SET_USER_QUERY } = require('../../Database/queries');
 
 function dbResponsesSwitch(query, params) {
-  console.log('--> AAAAAH QUE PUTARIA', SET_USER_QUERY);
   switch (query) {
     case GET_USER_QUERY:
       return mockGetUserResponse(params[0]);

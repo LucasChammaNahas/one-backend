@@ -12,6 +12,7 @@
     },
     "Environment global objectsenv": { "jest": true },
     "rules": {
-        "quotes": [2, "single"]
+        "quotes": [2, "single"], 
+        "max-len": [ "error", { "code": 120 } ]
     }
 }

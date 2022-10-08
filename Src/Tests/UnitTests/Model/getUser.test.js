@@ -6,31 +6,31 @@ jest.mock('../../../Database/dbConfig');
 
 describe('MODEL getUser', () => {
   it('Existing users', async () => {
-    const res0 = await getUser({ email: db[0].email });
-    const res1 = await getUser({ email: db[1].email });
-    const res2 = await getUser({ email: db[2].email });
-    expect(res0).toStrictEqual(db[0]);
-    expect(res1).toStrictEqual(db[1]);
-    expect(res2).toStrictEqual(db[2]);
+    db.forEach(async (user) => {
+      const res = await getUser({ email: user.email });
+      expect(res).toStrictEqual(user);
+    })
   });
 
   it('Non-existing user', async () => {
     const res = await getUser({ email: 'does-not-exist@db.com' });
-    expect(res).toStrictEqual(null);
+    expect(res).toBeNull();
   });
 
-  it('Not-allowed props', async () => {
-    const invalid1 = () => getUser();
-    const invalid2 = () => getUser(0);
-    const invalid3 = () => getUser({});
-    const invalid4 = () => getUser({ a: 'b' });
-    const invalid5 = () => getUser({ email: 'a@b.com', a: 'b' });
-    const invalid6 = () => getUser({ email: 'a@b.com' }, 0);
-    await expect(invalid1).rejects.toThrowError();
-    await expect(invalid2).rejects.toThrowError();
-    await expect(invalid3).rejects.toThrowError();
-    await expect(invalid4).rejects.toThrowError();
-    await expect(invalid5).rejects.toThrowError();
-    await expect(invalid6).rejects.toThrowError();
+  it('Test prop validations', async () => {
+    const { email } = db[0];
+
+    const invalids = [
+      () => getUser(),
+      () => getUser(0),
+      () => getUser({}),
+      () => getUser({ a: 'b' }),
+      () => getUser({ email, a: 'b' }),
+      () => getUser({ email }, 0),
+    ];
+
+    invalids.forEach(async (invalid) => {
+      await expect(invalid).rejects.toThrowError();
+    });
   });
 });
