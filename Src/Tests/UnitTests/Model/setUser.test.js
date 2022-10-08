@@ -9,53 +9,52 @@ describe('MODEL setUser', () => {
   beforeEach(() => {
     resetDb();
   });
-
-  const newUser = { email: 'new@google.com', password: 'asdfASDF' };
-  const newUserInvalidEmail = { email: '1', password: 'asdfASDF' };
-  const newUserInvalidPassword = { email: 'new@google.com', password: '1' };
-  const newUserInvalidBoth = { email: '1', password: '1' };
+  const NEW_USER = { email: 'new@google.com', password: 'asdfASDF' };
+  const NEW_USER_BAD_EMAIL = { email: '1', password: 'asdfASDF' };
+  const NEW_USER_BAD_PASSWORD = { email: 'new@google.com', password: '1' };
+  const NEW_USER_BAD_BOTH = { email: '1', password: '1' };
 
   it('New users', async () => {
-    const shouldNotExist = db.find((user) => user.email === newUser.email);
-    await setUser(newUser);
-    const shouldExist = db.find((user) => user.email === newUser.email);
+    const shouldNotExist = db.find((user) => user.email === NEW_USER.email);
+    await setUser(NEW_USER);
+    const shouldExist = db.find((user) => user.email === NEW_USER.email);
 
     expect(shouldNotExist).toBeUndefined();
-    expect(shouldExist).toStrictEqual(newUser);
+    expect(shouldExist).toStrictEqual(NEW_USER);
   });
 
   it('User already exists (should add anyway)', async () => {
     const lenBefore = db.length;
-    await setUser(newUser);
-    await setUser(newUser);
-    await setUser(newUser);
+    await setUser(NEW_USER);
+    await setUser(NEW_USER);
+    await setUser(NEW_USER);
     const lenAfter = db.length;
     expect(lenAfter).toStrictEqual(lenBefore + 3);
   });
 
-  it('Invalid email', async () => {
+  it('Invalid email (should add anyway)', async () => {
     const lenBefore = db.length;
-    await setUser(newUserInvalidEmail);
+    await setUser(NEW_USER_BAD_EMAIL);
     const lenAfter = db.length;
     expect(lenAfter).toStrictEqual(lenBefore + 1);
   });
 
-  it('Invalid password', async () => {
+  it('Invalid password (should add anyway)', async () => {
     const lenBefore = db.length;
-    await setUser(newUserInvalidPassword);
+    await setUser(NEW_USER_BAD_PASSWORD);
     const lenAfter = db.length;
     expect(lenAfter).toStrictEqual(lenBefore + 1);
   });
 
-  it('Invalid email and password', async () => {
+  it('Invalid email and password (should add anyway)', async () => {
     const lenBefore = db.length;
-    await setUser(newUserInvalidBoth);
+    await setUser(NEW_USER_BAD_BOTH);
     const lenAfter = db.length;
     expect(lenAfter).toStrictEqual(lenBefore + 1);
   });
 
   it('Test prop validations', async () => {
-    const { email, password } = newUser;
+    const { email, password } = NEW_USER;
 
     const invalids = [
       () => setUser(),
