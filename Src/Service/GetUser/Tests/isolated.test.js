@@ -1,8 +1,8 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db } = require('../../../Database/__mocks__/db');
-const { getUser } = require('../../../Service/GetUser/getUser');
+const { getUser } = require('../../../Service/GetUser/getUser.service');
 
-jest.mock('../../../Model/GetUser/getUser');
+jest.mock('../../../Service/GetUser/getUser.model');
 
 describe('SERVICE ISOLATED getUser', () => {
   const { email } = db[0];

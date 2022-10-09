@@ -3,7 +3,7 @@ const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 const { REMOVE_USER_QUERY } = require('../../Database/queries');
 
-async function removeUser(props) /*Void*/ {
+async function removeUser(props) /* Void */ {
   validateProps(props, arguments);
   const { email } = props;
 

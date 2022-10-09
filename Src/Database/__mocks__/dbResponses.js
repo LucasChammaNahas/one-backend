@@ -11,7 +11,7 @@ function dbResponsesSwitch(query, params) {
       return mockGetUserResponse(params[0]);
 
     case SET_USER_QUERY:
-      return mockSetUserResponse(params[0], params[1]);
+      return mockCreateUserResponse(params[0], params[1]);
 
     case REMOVE_USER_QUERY:
       return mockRemoveUserResponse(params[0]);
@@ -28,7 +28,7 @@ function mockGetUserResponse(email) {
   return !res ? null : res;
 }
 
-function mockSetUserResponse(email, password) {
+function mockCreateUserResponse(email, password) {
   db.push({ email, password });
 }
 

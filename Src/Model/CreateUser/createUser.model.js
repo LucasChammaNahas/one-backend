@@ -3,7 +3,7 @@ const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 const { SET_USER_QUERY } = require('../../Database/queries');
 
-async function setUser(props) /*Void*/ {
+async function createUser(props) /*Void*/ {
   validateProps(props, arguments);
   const { email, password } = props;
 
@@ -13,11 +13,11 @@ async function setUser(props) /*Void*/ {
     if (rows.length === 0) return null;
     return rows[0];
   } catch (error) {
-    console.log('--> setUser says: ', error);
+    console.log('--> createUser says: ', error);
     throw new InternalDbError(
-      'setUser says: an error occured while accessing the database'
+      'createUser says: an error occured while accessing the database'
     );
   }
 }
 
-module.exports = { setUser };
+module.exports = { createUser };

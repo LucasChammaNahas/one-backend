@@ -1,6 +1,6 @@
 // const { typeOf } = require('lucas');
 const { validateProps } = require('./functions');
-const { getUser } = require('../../Model/GetUser/getUser');
+const { getUser } = require('../../Model/GetUser/getUser.model');
 
 async function hasUser(props) {
   validateProps(props, arguments);

@@ -1,6 +1,6 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db } = require('../../../Database/__mocks__/db');
-const { getUser } = require('../../GetUser/getUser');
+const { getUser } = require('../../GetUser/getUser.model');
 
 jest.mock('../../../Database/dbConfig');
 

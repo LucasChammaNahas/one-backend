@@ -1,17 +1,17 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db, resetDb } = require('../../../Database/__mocks__/db');
-const { removeUser } = require('../../RemoveUser/removeUser');
+const { removeUser } = require('../../../Service/RemoveUser/removeUser.service');
 
-jest.mock('../../../Database/dbConfig');
+jest.mock('../../../Model/RemoveUser/removeUser.model');
 
-describe('MODEL ISOLATED removeUser', () => {
+describe('SERVICE ISOLATED removeUser', () => {
   const { email } = db[0];
   const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 
   describe('Passing parameters correctly:', () => {
     beforeEach(() => resetDb());
 
-    it('Removing one existing users', async () => {
+    it('Removing one existing user', async () => {
       const shouldExist = db.some((user) => user.email === email);
       await removeUser({ email });
       const shouldNotExist = db.some((user) => user.email === email);
@@ -27,11 +27,15 @@ describe('MODEL ISOLATED removeUser', () => {
       expect(db).toStrictEqual([]);
     });
 
-    it('Non-existing user', async () => {
-      const lenBefore = db.length;
-      await removeUser({ email: NON_EXISTING_EMAIL });
-      const lenAfter = db.length;
-      expect(lenBefore).toStrictEqual(lenAfter);
+    it('Removing same user twice', async () => {
+      await removeUser({ email });
+      const invalid = () => removeUser({ email });
+      await expect(invalid).rejects.toThrowError();
+    });
+
+    it.only('Removing non-existing user', async () => {
+      const invalid = () => removeUser({ email: NON_EXISTING_EMAIL });
+      await expect(invalid).rejects.toThrowError();
     });
   });
 
