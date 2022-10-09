@@ -4,12 +4,12 @@ const { getUser } = require('../../../Service/GetUser/getUser');
 
 jest.mock('../../../Model/GetUser/getUser');
 
-describe('SERVICE getUser', () => {
+describe('SERVICE ISOLATED getUser', () => {
   const { email } = db[0];
   const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 
   describe('Passing parameters correctly with:', () => {
-    it('Existing user', async () => {
+    it('Existing users', async () => {
       db.forEach(async (user) => {
         const res = await getUser({ email: user.email });
         expect(res).toStrictEqual(user);

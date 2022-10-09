@@ -5,7 +5,7 @@ const { resetDb } = require('../../../Database/__mocks__/db');
 
 jest.mock('../../../Database/dbConfig');
 
-describe('MODEL setUser', () => {
+describe('MODEL ISOLATED setUser', () => {
   const NEW_USER = { email: 'new@google.com', password: 'asdfASDF' };
   const NEW_USER_BAD_EMAIL = { email: '1', password: 'asdfASDF' };
   const NEW_USER_BAD_PASSWORD = { email: 'new@google.com', password: '1' };

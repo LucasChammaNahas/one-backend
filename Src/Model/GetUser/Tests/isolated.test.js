@@ -4,9 +4,9 @@ const { getUser } = require('../../GetUser/getUser');
 
 jest.mock('../../../Database/dbConfig');
 
-describe('MODEL getUser', () => {
-  const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
+describe('MODEL ISOLATED getUser', () => {
   const { email } = db[0];
+  const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 
   describe('Passing parameters correctly with:', () => {
     it('Existing users', async () => {
