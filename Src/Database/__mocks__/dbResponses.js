@@ -34,7 +34,9 @@ function mockSetUserResponse(email, password) {
 
 function mockRemoveUserResponse(email) {
   const index = db.findIndex((user) => user.email === email);
-  db.splice(index, 1);
+  if (index !== -1){
+    db.splice(index, 1);
+  }
 }
 
 module.exports = { dbResponsesSwitch };
