@@ -1,15 +1,15 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db } = require('../../../Database/__mocks__/db');
-const { getUser } = require('../../../Model/GetUser/getUser');
+const { getUser } = require('../../../Service/GetUser/getUser');
 
-jest.mock('../../../Database/dbConfig');
+jest.mock('../../../Model/GetUser/getUser');
 
-describe('MODEL getUser', () => {
-  const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
+describe('SERVICE getUser', () => {
   const { email } = db[0];
+  const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 
   describe('Passing parameters correctly with:', () => {
-    it('Existing users', async () => {
+    it('Existing user', async () => {
       db.forEach(async (user) => {
         const res = await getUser({ email: user.email });
         expect(res).toStrictEqual(user);
