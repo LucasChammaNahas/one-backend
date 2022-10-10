@@ -1,7 +1,7 @@
 const { db } = require('./db');
 const {
   GET_USER_QUERY,
-  SET_USER_QUERY,
+  CREATE_USER_QUERY,
   REMOVE_USER_QUERY,
 } = require('../../Database/queries');
 
@@ -10,7 +10,7 @@ function dbResponsesSwitch(query, params) {
     case GET_USER_QUERY:
       return mockGetUserResponse(params[0]);
 
-    case SET_USER_QUERY:
+    case CREATE_USER_QUERY:
       return mockCreateUserResponse(params[0], params[1]);
 
     case REMOVE_USER_QUERY:
