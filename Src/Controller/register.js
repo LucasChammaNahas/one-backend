@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { getUser } = require('../Service/GetUser/getUser.service');
+const { getUser } = require('../Service/GetUser/getUser');
 const { JWT_SECRET } = require('../Constants/jwtSecret');
 const { userAlreadyExists } = require('../StatusCodes/statusCodes');
 

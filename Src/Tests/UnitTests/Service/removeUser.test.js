@@ -1,6 +1,6 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db, resetDb } = require('../../../Database/__mocks__/db');
-const { removeUser } = require('../../../Service/RemoveUser/removeUser.service');
+const { removeUser } = require('../../../Service/RemoveUser/removeUser');
 
 jest.mock('../../../Database/dbConfig');
 

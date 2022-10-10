@@ -1,9 +1,9 @@
 const { InternalError } = require('../../Errors/InternalError');
 const { validateProps } = require('./functions');
-const { hasUser } = require('../HasUser/hasUser.service');
+const { hasUser } = require('../HasUser/hasUser');
 const {
   removeUser: removeUserModel,
-} = require('../../Model/RemoveUser/removeUser.model');
+} = require('../../Model/RemoveUser/removeUser');
 
 async function removeUser(props) /* Void */ {
   validateProps(props, arguments);
