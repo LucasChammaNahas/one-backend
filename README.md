@@ -12,10 +12,10 @@
 - [x] verify login request
 - [ ] Final Test
 ### Register
-- [x] CreateUser MODEL
-- [x] CreateUser MODEL Test
-- [ ] CreateUser SERVICE
-- [ ] CreateUser SERVICE Test
+- [x] createUser MODEL
+- [x] createUser MODEL Test
+- [ ] createUser SERVICE
+- [ ] createUser SERVICE Test
 - [ ] register CONTROLLER
 - [ ] register CONTROLLER Test
 - [x] login ROUTE 
