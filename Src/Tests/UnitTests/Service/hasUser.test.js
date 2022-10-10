@@ -4,7 +4,7 @@ const { hasUser } = require('../../../Service/HasUser/hasUser.service');
 
 jest.mock('../../../Database/dbConfig');
 
-describe('SERVICE CHAINED hasUser', () => {
+describe('SERVICE  hasUser', () => {
   const { email } = db[0];
   const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 

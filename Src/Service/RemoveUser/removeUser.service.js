@@ -9,7 +9,6 @@ async function removeUser(props) /* Void */ {
   validateProps(props, arguments);
   const { email } = props;
   const isUserInDb = await hasUser({ email });
-  console.log('--> user in db ', isUserInDb)
   if (!isUserInDb) {
     throw new InternalError(
       `removeUser says: user "${email}" does not exist in the database`,
