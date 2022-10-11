@@ -1,4 +1,5 @@
 const { pool } = require('../../Database/dbConfig');
+const { resetCache } = require('../../Cache/cache');
 const { validateProps } = require('./functions');
 const { InternalDbError } = require('../../Errors/InternalDbError');
 const { REMOVE_USER_QUERY } = require('../../Database/queries');
@@ -10,6 +11,7 @@ async function removeUser(props) /* Void */ {
   try {
     const params = [email];
     await pool.query(REMOVE_USER_QUERY, params);
+    resetCache();
   } catch (error) {
     console.log('--> removeUser says: ', error);
     throw new InternalDbError(
