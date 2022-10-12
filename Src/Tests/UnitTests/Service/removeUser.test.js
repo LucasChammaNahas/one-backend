@@ -1,6 +1,7 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db, resetDb } = require('../../../Database/__mocks__/db');
 const { removeUser } = require('../../../Service/RemoveUser/removeUser');
+const { resetCache } = require('../../../Cache/cache');
 
 jest.mock('../../../Database/dbConfig');
 
@@ -9,7 +10,10 @@ describe('SERVICE  removeUser', () => {
   const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 
   describe('Passing parameters correctly:', () => {
-    beforeEach(() => resetDb());
+    beforeEach(() => {
+      resetDb();
+      resetCache();
+    });
 
     it('Removing one existing users', async () => {
       const shouldExist = db.some((user) => user.email === email);
@@ -18,7 +22,7 @@ describe('SERVICE  removeUser', () => {
       expect(shouldExist).toStrictEqual(true);
       expect(shouldNotExist).toStrictEqual(false);
     });
-    
+
     it('Removing all existing users', async () => {
       const emailList = db.map(({ email }) => email);
       for (const email of emailList) {

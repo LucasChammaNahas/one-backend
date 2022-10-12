@@ -1,6 +1,7 @@
 const { describe, expect, it } = require('@jest/globals');
 const { db } = require('../../../Database/__mocks__/db');
 const { hasUser } = require('../../../Service/HasUser/hasUser');
+const { resetCache } = require('../../../Cache/cache');
 
 jest.mock('../../../Database/dbConfig');
 
@@ -9,6 +10,10 @@ describe('SERVICE  hasUser', () => {
   const NON_EXISTING_EMAIL = 'does-not-exist@db.com';
 
   describe('Passing parameters correctly with:', () => {
+    beforeEach(() => {
+      resetCache();
+    });
+
     it('Existing users', async () => {
       db.forEach(async (user) => {
         const res = await hasUser({ email: user.email });

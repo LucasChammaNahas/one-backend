@@ -1,4 +1,10 @@
 # Next Steps:
+
+## Caching:
+- [x] Create cache
+- [ ] Implement cache
+- [ ] Cache Test
+
 ## Login system:
 ### Sign Up
 - [x] getUser MODEL
@@ -14,11 +20,14 @@
 ### Register
 - [x] createUser MODEL
 - [x] createUser MODEL Test
-- [ ] createUser SERVICE
+- [x] createUser SERVICE
 - [ ] createUser SERVICE Test
-- [ ] register CONTROLLER
+- [x] register CONTROLLER
 - [ ] register CONTROLLER Test
 - [x] login ROUTE 
 - [x] login on ROUTER
 - [x] verify login request
 - [ ] Final Test
+
+## Errors
+- [ ] Fix errors arguments and names

@@ -1,4 +1,4 @@
-const { InternalError } = require('../../Errors/InternalError');
+const { InternalServiceError } = require('../../Errors/InternalServiceError');
 const { validateProps } = require('./functions');
 const { hasUser } = require('../HasUser/hasUser');
 const {
@@ -10,9 +10,8 @@ async function removeUser(props) /* Void */ {
   const { email } = props;
   const isUserInDb = await hasUser({ email });
   if (!isUserInDb) {
-    throw new InternalError(
-      `removeUser says: user "${email}" does not exist in the database`,
-      'SERVICE'
+    throw new InternalServiceError(
+      `removeUser says: user "${email}" does not exist in the database`
     );
   }
   await removeUserModel({ email });
